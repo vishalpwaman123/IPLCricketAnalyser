@@ -17,7 +17,7 @@ public class IplRunsDAO {
          player = iplMostRunsCSV.player;
          match = iplMostRunsCSV.match;
          inning = iplMostRunsCSV.inning;
-         average =iplMostRunsCSV. average;
+         average =iplMostRunsCSV.Battingaverage ;
         strikeRate = iplMostRunsCSV.strikeRate;
         noOfFour = iplMostRunsCSV.noOfFour;
         noOfSix =iplMostRunsCSV.noOfSix;
@@ -28,7 +28,7 @@ public class IplRunsDAO {
         player = iplMostWktsCSV.player;
         match = iplMostWktsCSV.match;
         inning = iplMostWktsCSV.inning;
-        average =iplMostWktsCSV. average;
+        average =iplMostWktsCSV. bollingaverage;
         runs = iplMostWktsCSV.runs;
 
     }

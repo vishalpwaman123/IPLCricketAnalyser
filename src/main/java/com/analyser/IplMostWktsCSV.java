@@ -5,6 +5,12 @@ import com.opencsv.bean.CsvBindByName;
 
 public class IplMostWktsCSV {
 
+    @CsvBindByName(column = "BBI", required = true)
+    public int bestBowlingIn;
+
+    @CsvBindByName(column = "Ov", required = true)
+    public int over;
+
     @CsvBindByName(column = "4w", required = true)
     public int Fourwicket;
 
@@ -24,7 +30,7 @@ public class IplMostWktsCSV {
     public int inning;
 
     @CsvBindByName(column = "Avg", required = true)
-    public float average;
+    public float bollingaverage;
 
     @CsvBindByName(column = "Runs", required = true)
     public int runs;
@@ -42,7 +48,7 @@ public class IplMostWktsCSV {
                 "player='" + player + '\'' +
                 ", match=" + match +
                 ", inning=" + inning +
-                ", average=" + average +
+                ", average=" + bollingaverage +
                 ", Runs=" + runs +
                 ", strikeRate=" + strikeRate +
                 ", economicsRate=" + economicsRate +

@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 
 public class IplCricketAnalyser {
 
+    public Map<String, IPLRunBowDAO> iplMap = new HashMap<String, IPLRunBowDAO>();
 
     List<IplWicketsDAO> iplWicketsList;
 
@@ -103,6 +104,26 @@ public class IplCricketAnalyser {
         return sort(strikngRate4WComparator);
     }
 
+    public String getSortedByBattingAndBowlingAverage() throws IplAnalyserException {
+        Comparator<IPLRunBowDAO> iplCSVComparatorBattingAverage=Comparator.comparing(average->average.battingAverage);
+        Comparator<IPLRunBowDAO> iplCSVComparatorBowlingAverage=iplCSVComparatorBattingAverage.thenComparing(average->average.bowlingAverage);
+        return sorting(iplCSVComparatorBowlingAverage);
+    }
+
+    private String sorting(Comparator<IPLRunBowDAO> averageComparator) throws IplAnalyserException {
+
+        if(iplMap == null || iplMap.size() ==0 ) {
+            throw new IplAnalyserException("no runs data",IplAnalyserException.ExceptionType.NO_IPL_DATA);
+        }
+        List sortedAvgRunsData =iplMap.values()
+                .stream()
+                .sorted(averageComparator)
+                .collect(Collectors.toList());
+        String sortedAverageRunsDataInJson = new Gson().toJson(sortedAvgRunsData);
+        return sortedAverageRunsDataInJson;
+    }
+
+
         private String sort(Comparator<IplWicketsDAO> averageComparator) throws IplAnalyserException {
 
         if(iplWicketsList == null || iplWicketsList.size() ==0 ) {
@@ -115,5 +136,6 @@ public class IplCricketAnalyser {
         String sortedAverageRunsDataInJson = new Gson().toJson(sortedAvgRunsData);
         return sortedAverageRunsDataInJson;
     }
+
 
 }

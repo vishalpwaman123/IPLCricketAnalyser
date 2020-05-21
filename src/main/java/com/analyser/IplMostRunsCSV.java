@@ -13,7 +13,7 @@ public class IplMostRunsCSV {
     public int inning;
 
     @CsvBindByName(column = "Avg", required = true)
-    public float average;
+    public float Battingaverage;
 
     @CsvBindByName(column = "SR", required = true)
     public float strikeRate;
@@ -36,13 +36,12 @@ public class IplMostRunsCSV {
                 "player='" + player + '\'' +
                 ", match='" + match + '\'' +
                 ", inning='" + inning + '\'' +
-                ", average='" + average + '\'' +
+                ", average='" + Battingaverage + '\'' +
                 ", strikeRate='" + strikeRate + '\'' +
                 ", noOfSix='" + noOfSix + '\'' +
                 ", noOfFour='" + noOfFour + '\'' +
                 ", highestStrike='" + highestStrike + '\'' +
-                ", run='" + runs
-                + '\'' +
+                ", run='" + runs + '\'' +
                 '}';
     }
 }
