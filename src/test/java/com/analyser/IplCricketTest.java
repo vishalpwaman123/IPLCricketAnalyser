@@ -48,5 +48,18 @@ public class IplCricketTest {
         }
     }
 
+    @Test
+    public void givenIplMostRunCSV_whenSortedOnMaxSix_shouldReturnShortedResult() {
+
+        try {
+
+            iplAnalyser.loadIplMostRunData(IPL_MOST_RUN_CSV_FILE_PATH);
+            String sortedResult = iplAnalyser.loadMaximumSixInIpl();
+            IplMostRunsCSV[] iplBatsManData = new Gson().fromJson( sortedResult , IplMostRunsCSV[].class);
+            Assert.assertEquals("Andre Russell",iplBatsManData[99].player);
+        } catch ( IplAnalyserException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

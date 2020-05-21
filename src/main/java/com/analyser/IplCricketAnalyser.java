@@ -43,7 +43,14 @@ public class IplCricketAnalyser {
         return sort(strikeRateComparator);
     }
 
-    private String sort(Comparator<IplRunsDAO> averageComparator) throws IplAnalyserException {
+    public String loadMaximumSixInIpl() throws IplAnalyserException {
+
+        Comparator<IplRunsDAO> maxNoOfSixComparator =Comparator.comparing(iplcricketdata -> iplcricketdata.noOfSix);
+        return sort(maxNoOfSixComparator);
+
+    }
+
+        private String sort(Comparator<IplRunsDAO> averageComparator) throws IplAnalyserException {
 
         if(iplRunsList == null || iplRunsList.size() ==0 ) {
             throw new IplAnalyserException("no runs data",IplAnalyserException.ExceptionType.NO_IPL_DATA);
