@@ -88,6 +88,16 @@ public class IplCricketAnalyser {
         return sort(BolingAvgComparator);
     }
 
+    public String loadBestFourWckStrikeRateOfPlayerFromIplWktsData() throws IplAnalyserException {
+        Comparator<IplWicketsDAO> BolingAvgComparator =Comparator.comparing(iplcricketdata -> iplcricketdata.Fourwicket);
+        return sort(BolingAvgComparator);
+    }
+
+    public String loadBestFiveWcktStrikeRateOfPlayerFromIplWktsData() throws IplAnalyserException{
+        Comparator<IplWicketsDAO> BolingAvgComparator =Comparator.comparing(iplcricketdata -> iplcricketdata.Fivewicket);
+        return sort(BolingAvgComparator);
+    }
+
         private String sort(Comparator<IplWicketsDAO> averageComparator) throws IplAnalyserException {
 
         if(iplWicketsList == null || iplWicketsList.size() ==0 ) {
@@ -100,7 +110,5 @@ public class IplCricketAnalyser {
         String sortedAverageRunsDataInJson = new Gson().toJson(sortedAvgRunsData);
         return sortedAverageRunsDataInJson;
     }
-
-
 
 }

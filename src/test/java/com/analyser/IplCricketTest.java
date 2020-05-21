@@ -154,4 +154,25 @@ public class IplCricketTest {
         }
     }
 
+    @Test
+    public void givenIplMostWktsCSV_whenSortedOnBestStriking4W5W_shouldReturnShortedResult() {
+
+        try {
+
+            iplAnalyser.loadIplMostWicketData(IPL_MOST_Wkts_CSV_FILE_PATH);
+            String sorted4WResult = iplAnalyser.loadBestFourWckStrikeRateOfPlayerFromIplWktsData();
+            String sorted5WResult = iplAnalyser.loadBestFiveWcktStrikeRateOfPlayerFromIplWktsData();
+            IplMostWktsCSV[] IplDataCSV1 = new Gson().fromJson( sorted4WResult , IplMostWktsCSV[].class);
+            IplMostWktsCSV[] IplDataCSV2 = new Gson().fromJson( sorted5WResult , IplMostWktsCSV[].class);
+
+            if (IplDataCSV1[98].strikeRate > IplDataCSV2[98].strikeRate)
+            {  Assert.assertEquals("Lasith Malinga", IplDataCSV1[98].player);}
+            else
+            {  Assert.assertEquals("Alzarri Joseph", IplDataCSV2[98].player);}
+
+        } catch ( IplAnalyserException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

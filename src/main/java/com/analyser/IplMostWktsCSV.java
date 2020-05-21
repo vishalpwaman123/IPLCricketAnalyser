@@ -4,6 +4,13 @@ import com.opencsv.bean.CsvBindByName;
 //POS,PLAYER,Mat,Inns,Ov,Runs,Wkts,BBI,Avg,Econ,SR,4w,5w,
 
 public class IplMostWktsCSV {
+
+    @CsvBindByName(column = "4w", required = true)
+    public int Fourwicket;
+
+    @CsvBindByName(column = "5w", required = true)
+    public int Fivewicket;
+
     @CsvBindByName(column = "PLAYER", required = true)
     public String player;
 
@@ -36,6 +43,8 @@ public class IplMostWktsCSV {
                 ", Runs=" + runs +
                 ", strikeRate=" + strikeRate +
                 ", economicsRate=" + economicsRate +
+                ", Fourwicket=" + Fourwicket +
+                ", Fivewicket=" + Fivewicket +
                 '}';
     }
 }

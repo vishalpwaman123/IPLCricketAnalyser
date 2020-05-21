@@ -6,9 +6,11 @@ public class IplWicketsDAO {
     public int highestStrike;
     public float average;
     public int runs;
-    public float strikeRate;
     public int noOfSix;
     public int noOfFour;
+    public float strikeRate;
+    public int Fourwicket;
+    public int Fivewicket;
     public float economicsRate;
 
 
@@ -18,8 +20,6 @@ public class IplWicketsDAO {
         highestStrike = iplMostRunsCSV.highestStrike;
         average =iplMostRunsCSV. average;
         strikeRate=iplMostRunsCSV.strikeRate;
-        noOfSix=iplMostRunsCSV.noOfSix;
-        noOfFour=iplMostRunsCSV.noOfFour;
 
     }
     public IplWicketsDAO(IplMostWktsCSV iplMostWktsCSV) {
@@ -29,5 +29,7 @@ public class IplWicketsDAO {
         runs = iplMostWktsCSV.runs;
         strikeRate=iplMostWktsCSV.strikeRate;
         economicsRate=iplMostWktsCSV.economicsRate;
+        Fivewicket=iplMostWktsCSV.Fivewicket;
+        Fourwicket=iplMostWktsCSV.Fourwicket;
     }
 }
