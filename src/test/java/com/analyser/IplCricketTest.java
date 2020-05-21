@@ -34,4 +34,19 @@ public class IplCricketTest {
         }
     }
 
+    @Test
+    public void givenIplMostRunCSV_whenSortedOnStrikeRate_shouldReturnShortedResult() {
+
+        try {
+
+            iplAnalyser.loadIplMostRunData(IPL_MOST_RUN_CSV_FILE_PATH);
+            String sortedResult = iplAnalyser.loadSortedOnStrikeRate();
+            IplMostRunsCSV[] IplDataCSV = new Gson().fromJson( sortedResult , IplMostRunsCSV[].class);
+            Assert.assertEquals(4.0, IplDataCSV[0].average,0.001);
+        } catch ( IplAnalyserException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }

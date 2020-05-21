@@ -37,6 +37,12 @@ public class IplCricketAnalyser {
         return sort(averageComparator);
     }
 
+    public String loadSortedOnStrikeRate() throws IplAnalyserException {
+
+        Comparator<IplRunsDAO> strikeRateComparator =Comparator.comparing(iplcricketdata -> iplcricketdata.strikeRate);
+        return sort(strikeRateComparator);
+    }
+
     private String sort(Comparator<IplRunsDAO> averageComparator) throws IplAnalyserException {
 
         if(iplRunsList == null || iplRunsList.size() ==0 ) {
