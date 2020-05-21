@@ -8,7 +8,9 @@ import org.junit.rules.ExpectedException;
 public class IplCricketTest {
     private static final String IPL_MOST_RUN_CSV_FILE_PATH = "./src/test/resources/IPLFactsheetMostRuns.csv";
     private static final String IPL_MOST_Wkts_CSV_FILE_PATH = "./src/test/resources/IPLFactsheetMostWkts.csv";
-    //private static final String WRONG_CSV_FILE_PATH = "./src/main/resources/IPLFactsheetMostRuns.csv";
+    private static final String IPL_MOST_RUNS_CSV_FILE_PATH_FOR_WRONG_FILE = "./src/test/resources/IPLData.csv";
+    private static final String IPL_MOST_RUNS_CSV_FILE_PATH_FOR_WRONG_EXTENSION = "./src/test/resources/IPLsheetMostRuns.jpg";
+
 
     IplCricketAnalyser iplAnalyser = new IplCricketAnalyser();
 
@@ -19,6 +21,27 @@ public class IplCricketTest {
         Assert.assertEquals(100, numberOfRecord);
 
     }
+
+
+    @Test
+    public void givenIPLMostRunsCSVFile_whenImproperFileName_shouldReturnException() {
+        try {
+            iplAnalyser.loadIplMostWicketData(IPL_MOST_RUNS_CSV_FILE_PATH_FOR_WRONG_FILE);
+        }catch (IplAnalyserException e) {
+            Assert.assertEquals(IplAnalyserException.ExceptionType.NO_IPL_DATA,e.type);
+        }
+    }
+
+    @Test
+    public void givenIPLMostRunsCSVFile_whenImproperFileExtension_shouldReturnException() {
+        try {
+            iplAnalyser.loadIplMostWicketData(IPL_MOST_RUNS_CSV_FILE_PATH_FOR_WRONG_EXTENSION);
+        }catch (IplAnalyserException e) {
+            Assert.assertEquals(IplAnalyserException.ExceptionType.NO_IPL_DATA,e.type);
+        }
+    }
+
+
 
     @Test
     public void givenIplMostRunCSV_whenSortedOnBattingAverage_shouldReturnShortedResult() {
