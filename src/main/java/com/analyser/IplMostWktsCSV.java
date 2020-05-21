@@ -2,6 +2,7 @@ package com.analyser;
 
 import com.opencsv.bean.CsvBindByName;
 //POS,PLAYER,Mat,Inns,Ov,Runs,Wkts,BBI,Avg,Econ,SR,4w,5w,
+
 public class IplMostWktsCSV {
     @CsvBindByName(column = "PLAYER", required = true)
     public String player;
@@ -19,7 +20,7 @@ public class IplMostWktsCSV {
     public int runs;
 
     @CsvBindByName(column = "SR", required = true)
-    public int strikeRate;
+    public float strikeRate;
 
     @Override
     public String toString() {

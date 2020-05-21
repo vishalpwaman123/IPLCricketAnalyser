@@ -126,6 +126,18 @@ public class IplCricketTest {
         }
     }
 
+    @Test
+    public void givenIplMostWktsCSV_whenSortedStrikeRate_shouldReturnShortedResult() {
 
+        try {
+
+            iplAnalyser.loadIplMostWicketData(IPL_MOST_Wkts_CSV_FILE_PATH);
+            String sortedResult = iplAnalyser.loadBestStrikeRateOfPlayerFromIplWktsData();
+            IplMostWktsCSV[] IplDataCSV = new Gson().fromJson( sortedResult , IplMostWktsCSV[].class);
+            Assert.assertEquals("Krishnappa Gowtham", IplDataCSV[98].player);
+        } catch ( IplAnalyserException e) {
+            e.printStackTrace();
+        }
+    }
 
 }
