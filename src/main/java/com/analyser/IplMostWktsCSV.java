@@ -8,6 +8,9 @@ public class IplMostWktsCSV {
     @CsvBindByName(column = "4w", required = true)
     public int Fourwicket;
 
+    @CsvBindByName(column = "Wkts", required = true)
+    public int Wickets;
+
     @CsvBindByName(column = "5w", required = true)
     public int Fivewicket;
 
@@ -45,6 +48,7 @@ public class IplMostWktsCSV {
                 ", economicsRate=" + economicsRate +
                 ", Fourwicket=" + Fourwicket +
                 ", Fivewicket=" + Fivewicket +
+                ", Wickets=" + Wickets +
                 '}';
     }
 }

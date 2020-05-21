@@ -98,6 +98,11 @@ public class IplCricketAnalyser {
         return sort(BolingAvgComparator);
     }
 
+    public String loadHighestWiketsOfPlayerFromIplWktsData() throws IplAnalyserException {
+        Comparator<IplWicketsDAO> strikngRate4WComparator =Comparator.comparing(census -> census.Wickets);
+        return sort(strikngRate4WComparator);
+    }
+
         private String sort(Comparator<IplWicketsDAO> averageComparator) throws IplAnalyserException {
 
         if(iplWicketsList == null || iplWicketsList.size() ==0 ) {

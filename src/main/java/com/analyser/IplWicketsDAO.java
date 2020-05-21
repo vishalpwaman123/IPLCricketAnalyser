@@ -12,7 +12,7 @@ public class IplWicketsDAO {
     public int Fourwicket;
     public int Fivewicket;
     public float economicsRate;
-
+    public int Wickets;
 
     public IplWicketsDAO(IplMostRunsCSV iplMostRunsCSV) {
         player = iplMostRunsCSV.player;
@@ -31,5 +31,6 @@ public class IplWicketsDAO {
         economicsRate=iplMostWktsCSV.economicsRate;
         Fivewicket=iplMostWktsCSV.Fivewicket;
         Fourwicket=iplMostWktsCSV.Fourwicket;
+        Wickets=iplMostWktsCSV.Wickets;
     }
 }

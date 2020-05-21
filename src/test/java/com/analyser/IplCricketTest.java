@@ -175,4 +175,17 @@ public class IplCricketTest {
         }
     }
 
+    @Test
+    public void givenIplMostWktsCSV_whenSortedOnHighestWikets_shouldReturnShortedResult() {
+
+        try {
+            iplAnalyser.loadIplMostWicketData(IPL_MOST_Wkts_CSV_FILE_PATH);
+            String sortedResult = iplAnalyser.loadHighestWiketsOfPlayerFromIplWktsData();
+            IplMostRunsCSV[] iplBatsManData = new Gson().fromJson(sortedResult, IplMostRunsCSV[].class);
+            Assert.assertEquals("Imran Tahir", iplBatsManData[98].player);
+        } catch (IplAnalyserException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
