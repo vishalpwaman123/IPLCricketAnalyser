@@ -112,4 +112,19 @@ public class IplCricketTest {
 
     }
 
+    @Test
+    public void givenIplMostWicketCSV_whenSortedOnBollingAverage_shouldReturnShortedResult() {
+
+        try {
+
+            iplAnalyser.loadIplMostWicketData(IPL_MOST_Wkts_CSV_FILE_PATH);
+            String sortedResult = iplAnalyser.loadSortedOnBollingAverage();
+            IplMostWktsCSV[] IplDataCSV = new Gson().fromJson( sortedResult , IplMostWktsCSV[].class);
+            Assert.assertEquals(0.0, IplDataCSV[0].average,0.001);
+        } catch ( IplAnalyserException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
