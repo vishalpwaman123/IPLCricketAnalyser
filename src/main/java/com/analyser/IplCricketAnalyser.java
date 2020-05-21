@@ -50,6 +50,13 @@ public class IplCricketAnalyser {
 
     }
 
+    public String loadMaximumFourInIpl() throws IplAnalyserException {
+
+        Comparator<IplRunsDAO> maxNoOfSixComparator =Comparator.comparing(iplcricketdata -> iplcricketdata.noOfFour);
+        return sort(maxNoOfSixComparator);
+
+    }
+
         private String sort(Comparator<IplRunsDAO> averageComparator) throws IplAnalyserException {
 
         if(iplRunsList == null || iplRunsList.size() ==0 ) {

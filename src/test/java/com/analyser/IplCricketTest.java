@@ -62,4 +62,18 @@ public class IplCricketTest {
         }
     }
 
+    @Test
+    public void givenIplMostRunCSV_whenSortedOnMaxFour_shouldReturnShortedResult() {
+
+        try {
+
+            iplAnalyser.loadIplMostRunData(IPL_MOST_RUN_CSV_FILE_PATH);
+            String sortedResult = iplAnalyser.loadMaximumFourInIpl();
+            IplMostRunsCSV[] iplBatsManData = new Gson().fromJson( sortedResult , IplMostRunsCSV[].class);
+            Assert.assertEquals("Shikhar Dhawan",iplBatsManData[99].player);
+        } catch ( IplAnalyserException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
