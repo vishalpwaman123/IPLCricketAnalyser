@@ -12,20 +12,20 @@ import java.util.stream.Collectors;
 public class IplCricketAnalyser {
 
 
-    List<IplRunsDAO> iplRunsList;
+    List<IplWicketsDAO> iplWicketsList;
 
     public IplCricketAnalyser() {
-        this.iplRunsList = new ArrayList<>();
+        this.iplWicketsList = new ArrayList<>();
     }
 
-    public int loadIplMostRunData(String csvFilePath) throws IplAnalyserException{
+    public int loadIplMostWicketData(String csvFilePath) throws IplAnalyserException{
         try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath))) {
             ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
-            Iterator<IplMostRunsCSV> csvFileIterator = csvBuilder.getCSVFileIterator(reader, IplMostRunsCSV.class);
+            Iterator<IplMostWktsCSV> csvFileIterator = csvBuilder.getCSVFileIterator(reader, IplMostWktsCSV.class);
             while (csvFileIterator.hasNext()) {
-                this.iplRunsList.add(new IplRunsDAO(csvFileIterator.next()));
+                this.iplWicketsList.add(new IplWicketsDAO(csvFileIterator.next()));
             }
-            return this.iplRunsList.size();
+            return this.iplWicketsList.size();
         } catch (IOException | CSVBuilderException e) {
             throw new IplAnalyserException(e.getMessage(), IplAnalyserException.ExceptionType.IPL_FILE_PROBLEM);
         }
@@ -33,50 +33,50 @@ public class IplCricketAnalyser {
 
     public String loadSortedOnBattingAverage() throws IplAnalyserException {
 
-        Comparator<IplRunsDAO> averageComparator =Comparator.comparing(iplcricketdata -> iplcricketdata.average);
+        Comparator<IplWicketsDAO> averageComparator =Comparator.comparing(iplcricketdata -> iplcricketdata.average);
         return sort(averageComparator);
     }
 
     public String loadSortedOnStrikeRate() throws IplAnalyserException {
 
-        Comparator<IplRunsDAO> strikeRateComparator =Comparator.comparing(iplcricketdata -> iplcricketdata.strikeRate);
+        Comparator<IplWicketsDAO> strikeRateComparator =Comparator.comparing(iplcricketdata -> iplcricketdata.strikeRate);
         return sort(strikeRateComparator);
     }
 
     public String loadMaximumSixInIpl() throws IplAnalyserException {
 
-        Comparator<IplRunsDAO> maxNoOfSixComparator =Comparator.comparing(iplcricketdata -> iplcricketdata.noOfSix);
+        Comparator<IplWicketsDAO> maxNoOfSixComparator =Comparator.comparing(iplcricketdata -> iplcricketdata.noOfSix);
         return sort(maxNoOfSixComparator);
 
     }
 
     public String loadMaximumFourInIpl() throws IplAnalyserException {
 
-        Comparator<IplRunsDAO> maxNoOfSixComparator =Comparator.comparing(iplcricketdata -> iplcricketdata.noOfFour);
+        Comparator<IplWicketsDAO> maxNoOfSixComparator =Comparator.comparing(iplcricketdata -> iplcricketdata.noOfFour);
         return sort(maxNoOfSixComparator);
 
     }
 
     public String loadHighestStrikeInIpl() throws IplAnalyserException {
 
-        Comparator<IplRunsDAO> maxNoOfSixComparator =Comparator.comparing(iplcricketdata -> iplcricketdata.highestStrike);
+        Comparator<IplWicketsDAO> maxNoOfSixComparator =Comparator.comparing(iplcricketdata -> iplcricketdata.highestStrike);
         return sort(maxNoOfSixComparator);
 
     }
 
     public String loadHighestRunInIpl() throws IplAnalyserException {
 
-        Comparator<IplRunsDAO> maxNoOfSixComparator =Comparator.comparing(iplcricketdata -> iplcricketdata.runs);
+        Comparator<IplWicketsDAO> maxNoOfSixComparator =Comparator.comparing(iplcricketdata -> iplcricketdata.runs);
         return sort(maxNoOfSixComparator);
 
     }
 
-        private String sort(Comparator<IplRunsDAO> averageComparator) throws IplAnalyserException {
+        private String sort(Comparator<IplWicketsDAO> averageComparator) throws IplAnalyserException {
 
-        if(iplRunsList == null || iplRunsList.size() ==0 ) {
+        if(iplWicketsList == null || iplWicketsList.size() ==0 ) {
             throw new IplAnalyserException("no runs data",IplAnalyserException.ExceptionType.NO_IPL_DATA);
         }
-        List sortedAvgRunsData =iplRunsList
+        List sortedAvgRunsData =iplWicketsList
                 .stream()
                 .sorted(averageComparator)
                 .collect(Collectors.toList());

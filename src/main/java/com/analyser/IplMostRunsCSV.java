@@ -41,7 +41,8 @@ public class IplMostRunsCSV {
                 ", noOfSix='" + noOfSix + '\'' +
                 ", noOfFour='" + noOfFour + '\'' +
                 ", highestStrike='" + highestStrike + '\'' +
-                ", run='" + runs + '\'' +
+                ", run='" + runs
+                + '\'' +
                 '}';
     }
 }
