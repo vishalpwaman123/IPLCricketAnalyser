@@ -9,6 +9,7 @@ public class IplRunsDAO {
     public float strikeRate;
     public int noOfFour;
     public int noOfSix;
+    public int highestStrike;
 
 
     public IplRunsDAO(IplMostRunsCSV iplMostRunsCSV) {
@@ -19,6 +20,7 @@ public class IplRunsDAO {
         strikeRate = iplMostRunsCSV.strikeRate;
         noOfFour = iplMostRunsCSV.noOfFour;
         noOfSix =iplMostRunsCSV.noOfSix;
+        highestStrike =iplMostRunsCSV.highestStrike;
     }
     public IplRunsDAO(IplMostWktsCSV iplMostWktsCSV) {
         player = iplMostWktsCSV.player;
