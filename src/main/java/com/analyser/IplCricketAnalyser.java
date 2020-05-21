@@ -13,10 +13,33 @@ public class IplCricketAnalyser {
 
     public Map<String, IPLRunBowDAO> iplMap = new HashMap<String, IPLRunBowDAO>();
 
+    Map<String, IPLRunBowDAO> iplRunsSheetMap =null;
+    Map<String, IPLRunBowDAO> iplWktsSheetMap=null;
+    Map<String, IPLRunBowDAO> iplRunsWktsSheetMap=null;
+
     List<IplWicketsDAO> iplWicketsList;
 
     public IplCricketAnalyser() {
         this.iplWicketsList = new ArrayList<>();
+        this.iplRunsSheetMap =new HashMap<String, IPLRunBowDAO>();
+        this.iplWktsSheetMap=new HashMap<String, IPLRunBowDAO>();
+        this.iplRunsWktsSheetMap=new HashMap<String, IPLRunBowDAO>();
+    }
+
+    public  int loadIplRunsSheetData(String csvFilePath) throws IplAnalyserException {
+        iplRunsSheetMap=new IplDataLoader().loadIplRunsSheetData(IplMostRunsCSV.class,csvFilePath);
+        return iplRunsSheetMap.size();
+    }
+
+    public int loadIplWktsSheetData(String csvFilePath) throws IplAnalyserException {
+        iplWktsSheetMap=new IplDataLoader().loadIplWktsSheetData(IplMostWktsCSV.class,csvFilePath);
+        return iplWktsSheetMap.size();
+    }
+
+    private Map<String, IPLRunBowDAO> loadBothRunsandWktsSheet(Map<String,IPLRunBowDAO> iplRunsSheetMap, Map<String,IPLRunBowDAO> iplWktsSheetMap) {
+        iplRunsWktsSheetMap.putAll(iplRunsSheetMap);
+        iplRunsWktsSheetMap.putAll(iplWktsSheetMap);
+        return iplRunsWktsSheetMap;
     }
 
     public int loadIplMostWicketData(String csvFilePath) throws IplAnalyserException{
@@ -108,6 +131,13 @@ public class IplCricketAnalyser {
         Comparator<IPLRunBowDAO> iplCSVComparatorBattingAverage=Comparator.comparing(average->average.battingAverage);
         Comparator<IPLRunBowDAO> iplCSVComparatorBowlingAverage=iplCSVComparatorBattingAverage.thenComparing(average->average.bowlingAverage);
         return sorting(iplCSVComparatorBowlingAverage);
+    }
+
+    public String getRunsandWicketsWiseSortedData() throws IplAnalyserException {
+        loadBothRunsandWktsSheet(iplRunsSheetMap,iplWktsSheetMap);
+        Comparator<IPLRunBowDAO> iplComparatorRuns =Comparator.comparing(ipl->ipl.runs);
+        Comparator<IPLRunBowDAO> iplComparatorRunsWickets=iplComparatorRuns.thenComparing(ipl->ipl.wickets);
+        return this.sorting(iplComparatorRunsWickets);
     }
 
     private String sorting(Comparator<IPLRunBowDAO> averageComparator) throws IplAnalyserException {

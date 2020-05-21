@@ -203,7 +203,7 @@ public class IplCricketTest {
     }
 
     @Test
-    public void givenIpl2019MostWicketsCSVFile_ShouldReturnPlayer_WhoHadLowBattingAndBowlingAverage() {
+    public void givenIplMostWicketsCSVFile_ShouldReturnPlayer_WhoHadLowBattingAndBowlingAverage() {
         try {
             iplAnalyser.loadIplMostWicketData(IPL_MOST_Wkts_CSV_FILE_PATH);
             String sortedIPLData=iplAnalyser.getSortedByBattingAndBowlingAverage();
@@ -213,5 +213,33 @@ public class IplCricketTest {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void givenIPLMostWktsandRunsCSVFile_WhenSortedOnRunsandWickets_ShouldReturnBestPlayer() {
+        try {
+
+            iplAnalyser.loadIplMostWicketData(IPL_MOST_Wkts_CSV_FILE_PATH);
+            iplAnalyser.loadIplMostWicketData(IPL_MOST_RUN_CSV_FILE_PATH);
+            String sortedData=iplAnalyser.getRunsandWicketsWiseSortedData();
+            IplMostRunsCSV[] sortedAverageData=new Gson().fromJson(sortedData, IplMostRunsCSV[].class);
+            Assert.assertEquals("David Warner",sortedAverageData[sortedAverageData.length-1].player);
+        } catch (IplAnalyserException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void givenIPLMostWktsCSVFile_and_IPLMostRunsCSVFile_WhenSortedOn_RunsandWickets_ShouldReturn_LeastAllRounderPlayer() {
+        try {
+            iplAnalyser.loadIplMostWicketData(IPL_MOST_Wkts_CSV_FILE_PATH);
+            iplAnalyser.loadIplMostWicketData(IPL_MOST_RUN_CSV_FILE_PATH);
+            String sortedData=iplAnalyser.getRunsandWicketsWiseSortedData();
+            IplMostRunsCSV[] sortedAverageData=new Gson().fromJson(sortedData, IplMostRunsCSV[].class);
+            Assert.assertEquals("Tim Southee",sortedAverageData[0].player);
+        } catch (IplAnalyserException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
 
