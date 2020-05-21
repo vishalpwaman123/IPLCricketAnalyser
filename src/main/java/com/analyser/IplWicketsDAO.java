@@ -9,6 +9,7 @@ public class IplWicketsDAO {
     public float strikeRate;
     public int noOfSix;
     public int noOfFour;
+    public float economicsRate;
 
 
     public IplWicketsDAO(IplMostRunsCSV iplMostRunsCSV) {
@@ -27,5 +28,6 @@ public class IplWicketsDAO {
         average =iplMostWktsCSV. average;
         runs = iplMostWktsCSV.runs;
         strikeRate=iplMostWktsCSV.strikeRate;
+        economicsRate=iplMostWktsCSV.economicsRate;
     }
 }

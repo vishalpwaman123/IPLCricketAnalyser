@@ -83,6 +83,11 @@ public class IplCricketAnalyser {
 
     }
 
+    public String loadBesteconomyRateOfPlayerFromIplWktsData() throws IplAnalyserException {
+        Comparator<IplWicketsDAO> BolingAvgComparator =Comparator.comparing(iplcricketdata -> iplcricketdata.economicsRate);
+        return sort(BolingAvgComparator);
+    }
+
         private String sort(Comparator<IplWicketsDAO> averageComparator) throws IplAnalyserException {
 
         if(iplWicketsList == null || iplWicketsList.size() ==0 ) {
@@ -95,6 +100,7 @@ public class IplCricketAnalyser {
         String sortedAverageRunsDataInJson = new Gson().toJson(sortedAvgRunsData);
         return sortedAverageRunsDataInJson;
     }
+
 
 
 }

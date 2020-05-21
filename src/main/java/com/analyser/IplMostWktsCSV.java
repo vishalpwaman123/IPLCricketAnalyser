@@ -22,6 +22,10 @@ public class IplMostWktsCSV {
     @CsvBindByName(column = "SR", required = true)
     public float strikeRate;
 
+    @CsvBindByName(column = "Econ", required = true)
+    public float economicsRate;
+
+
     @Override
     public String toString() {
         return "IplMostWktsCSV{" +
@@ -31,6 +35,7 @@ public class IplMostWktsCSV {
                 ", average=" + average +
                 ", Runs=" + runs +
                 ", strikeRate=" + strikeRate +
+                ", economicsRate=" + economicsRate +
                 '}';
     }
 }
