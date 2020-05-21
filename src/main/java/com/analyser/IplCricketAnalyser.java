@@ -76,6 +76,13 @@ public class IplCricketAnalyser {
         return sort(maxNoOfSixComparator);
     }
 
+    /*public String loadSortedOnBollingStrikeRateInWicketData() throws IplAnalyserException {
+
+        Comparator<IplWicketsDAO> maxNoOfSixComparator =Comparator.comparing(iplcricketdata -> iplcricketdata.strikeRate);
+        return sort(maxNoOfSixComparator);
+
+    }*/
+
         private String sort(Comparator<IplWicketsDAO> averageComparator) throws IplAnalyserException {
 
         if(iplWicketsList == null || iplWicketsList.size() ==0 ) {

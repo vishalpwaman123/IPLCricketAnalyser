@@ -19,13 +19,13 @@ public class IplWicketsDAO {
         strikeRate=iplMostRunsCSV.strikeRate;
         noOfSix=iplMostRunsCSV.noOfSix;
         noOfFour=iplMostRunsCSV.noOfFour;
+
     }
     public IplWicketsDAO(IplMostWktsCSV iplMostWktsCSV) {
         player = iplMostWktsCSV.player;
         match = iplMostWktsCSV.match;
-        //inning = iplMostWktsCSV.inning;
         average =iplMostWktsCSV. average;
         runs = iplMostWktsCSV.runs;
-
+        strikeRate=iplMostWktsCSV.strikeRate;
     }
 }
