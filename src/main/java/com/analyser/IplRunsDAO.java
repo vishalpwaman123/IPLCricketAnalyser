@@ -12,6 +12,7 @@ public class IplRunsDAO {
     public int highestStrike;
 
 
+
     public IplRunsDAO(IplMostRunsCSV iplMostRunsCSV) {
          player = iplMostRunsCSV.player;
          match = iplMostRunsCSV.match;
@@ -21,6 +22,7 @@ public class IplRunsDAO {
         noOfFour = iplMostRunsCSV.noOfFour;
         noOfSix =iplMostRunsCSV.noOfSix;
         highestStrike =iplMostRunsCSV.highestStrike;
+        runs =iplMostRunsCSV.runs;
     }
     public IplRunsDAO(IplMostWktsCSV iplMostWktsCSV) {
         player = iplMostWktsCSV.player;

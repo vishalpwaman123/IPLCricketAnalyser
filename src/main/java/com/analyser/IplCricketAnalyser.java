@@ -64,6 +64,13 @@ public class IplCricketAnalyser {
 
     }
 
+    public String loadHighestRunInIpl() throws IplAnalyserException {
+
+        Comparator<IplRunsDAO> maxNoOfSixComparator =Comparator.comparing(iplcricketdata -> iplcricketdata.runs);
+        return sort(maxNoOfSixComparator);
+
+    }
+
         private String sort(Comparator<IplRunsDAO> averageComparator) throws IplAnalyserException {
 
         if(iplRunsList == null || iplRunsList.size() ==0 ) {
