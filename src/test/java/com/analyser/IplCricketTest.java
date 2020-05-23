@@ -274,17 +274,17 @@ public class IplCricketTest {
     }
 
     @Test
-    public void givenIPLMostWktsCSVFile_and_IPLMostRunsCSVFile_WhenSortedOn_RunsandWickets_ShouldReturn_LeastAllRounderPlayer() {
+    public void givenIPLRunsandWktsFile_whenSortedOnRunsandWickets_shouldReturnLeastAllRounderPlayer() {
         try {
-            iplAnalyser.loadIplMostWicketData(IPL_MOST_Wkts_CSV_FILE_PATH);
-            iplAnalyser.loadIplMostWicketData(IPL_MOST_RUN_CSV_FILE_PATH);
-            String sortedData=iplAnalyser.getRunsandWicketsWiseSortedData();
-            IplMostRunsCSV[] sortedAverageData=new Gson().fromJson(sortedData, IplMostRunsCSV[].class);
+            IplCricketAnalyser iplAnalyser=new IplCricketAnalyser(IplGivenEntity.BATTING);
+            iplAnalyser.loadIplData(IPL_MOST_RUN_CSV_FILE_PATH,IPL_MOST_Wkts_CSV_FILE_PATH);
+            String sortedData=iplAnalyser.Sorting(SortedByField.Parameter.IPL_BEST_ALLROUNDER);
+            IplRecordDAO[] sortedAverageData=new Gson().fromJson(sortedData, IplRecordDAO[].class);
             Assert.assertEquals("Tim Southee",sortedAverageData[0].player);
-        } catch (IplAnalyserException e) {
-            e.printStackTrace();
+        }catch (IplAnalyserException e) {
         }
     }
+
 
 
 
