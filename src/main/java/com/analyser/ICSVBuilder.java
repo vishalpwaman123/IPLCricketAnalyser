@@ -8,7 +8,5 @@ public interface ICSVBuilder<E> {
 
 
    Iterator<E> getCSVFileIterator(Reader reader, Class csvClass) throws IplAnalyserException, CSVBuilderException;
-    List<E> getCSVFileList(Reader reader, Class csvClass) throws IplAnalyserException, CSVBuilderException;
 
-    Iterator<E> getCSVfileIterator(Reader reader, Class<IplMostRunsCSV> csvClass);
 }
