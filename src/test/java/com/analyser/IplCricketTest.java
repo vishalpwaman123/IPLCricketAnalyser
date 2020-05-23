@@ -249,7 +249,17 @@ public class IplCricketTest {
         }
     }
 
-    
+    @Test
+    public void givenIPLRunsandWktsFile_whenSortedOnBowlingandBattingAverages_shouldReturnLeastAveragePlayer() {
+        try {
+            IplCricketAnalyser iplAnalyser=new IplCricketAnalyser(IplGivenEntity.BATTING);
+            iplAnalyser.loadIplData(IPL_MOST_RUN_CSV_FILE_PATH,IPL_MOST_Wkts_CSV_FILE_PATH);
+            String sortedData=iplAnalyser.Sorting(SortedByField.Parameter.BATTING_BOWLING_AVERAGE);
+            IplRecordDAO[] sortedAverageData=new Gson().fromJson(sortedData, IplRecordDAO[].class);
+            Assert.assertEquals("Harpreet Brar",sortedAverageData[0].player);
+        }catch (IplAnalyserException e) {
+        }
+    }
 
     @Test
     public void givenIPLMostWktsCSVFile_and_IPLMostRunsCSVFile_WhenSortedOn_RunsandWickets_ShouldReturn_LeastAllRounderPlayer() {
