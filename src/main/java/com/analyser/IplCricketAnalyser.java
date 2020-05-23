@@ -18,12 +18,18 @@ public class IplCricketAnalyser {
     Map<String, IPLRunBowDAO> iplRunsWktsSheetMap=null;
 
     List<IplWicketsDAO> iplWicketsList;
+    List<IplRunsDAO> iplRunsList;
 
     public IplCricketAnalyser() {
         this.iplWicketsList = new ArrayList<>();
-        this.iplRunsSheetMap =new HashMap<String, IPLRunBowDAO>();
-        this.iplWktsSheetMap=new HashMap<String, IPLRunBowDAO>();
-        this.iplRunsWktsSheetMap=new HashMap<String, IPLRunBowDAO>();
+        this.iplRunsList = new ArrayList<>();
+    }
+
+    Map<String, IplRecordDAO> iplDataMap;
+    public IplGivenEntity iplEntity;
+
+    public IplCricketAnalyser(IplGivenEntity iplEntity) {
+        this.iplEntity=iplEntity;
     }
 
     public  int loadIplRunsSheetData(String csvFilePath) throws IplAnalyserException {
@@ -40,6 +46,19 @@ public class IplCricketAnalyser {
         iplRunsWktsSheetMap.putAll(iplRunsSheetMap);
         iplRunsWktsSheetMap.putAll(iplWktsSheetMap);
         return iplRunsWktsSheetMap;
+    }
+
+    public int loadIplMostRunData(String csvFilePath) throws IplAnalyserException{
+        try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath))) {
+            ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
+            Iterator<IplMostRunsCSV> csvFileIterator = csvBuilder.getCSVFileIterator(reader, IplMostRunsCSV.class);
+            while (csvFileIterator.hasNext()) {
+                this.iplRunsList.add(new IplRunsDAO(csvFileIterator.next()));
+            }
+            return this.iplRunsList.size();
+        } catch (IOException | CSVBuilderException e) {
+            throw new IplAnalyserException(e.getMessage(), IplAnalyserException.ExceptionType.IPL_FILE_PROBLEM);
+        }
     }
 
     public int loadIplMostWicketData(String csvFilePath) throws IplAnalyserException{
@@ -168,4 +187,21 @@ public class IplCricketAnalyser {
     }
 
 
+    public  int loadIplData(String... csvFilePath) throws IplAnalyserException {
+        iplDataMap=new IplAdapterFactory().cricketleagueFactory(iplEntity,csvFilePath);
+        return iplDataMap.size();
+    }
+
+    public String Sorting(SortedByField.Parameter parameter) throws IplAnalyserException {
+        Comparator<IplRecordDAO> iplComparator;
+        if(iplDataMap ==null || iplDataMap.size()==0){
+            throw new IplAnalyserException("no runs data",IplAnalyserException.ExceptionType.NO_IPL_DATA);        }
+        iplComparator = SortedByField.getParameter(parameter);
+        ArrayList sortedData= iplDataMap.values()
+                .stream().
+                        sorted(iplComparator)
+                .collect(Collectors.toCollection(ArrayList::new));
+        String sortedDataInJson=new Gson().toJson(sortedData);
+        return sortedDataInJson;
+    }
 }

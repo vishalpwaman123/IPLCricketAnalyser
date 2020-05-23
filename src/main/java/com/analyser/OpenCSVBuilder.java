@@ -8,16 +8,18 @@ import java.util.Iterator;
 import java.util.List;
 
 
-public class OpenCSVBuilder<E> implements ICSVBuilder {
+public abstract class OpenCSVBuilder<E> implements ICSVBuilder {
 
     public Iterator<E> getCSVFileIterator(Reader reader, Class csvClass) throws CSVBuilderException {
-       return this.getCSVBean(reader,csvClass).iterator();
+        return this.getCSVBean(reader,csvClass).iterator();
     }
 
     @Override
     public List<E> getCSVFileList(Reader reader, Class csvClass) throws  CSVBuilderException {
         return this.getCSVBean(reader,csvClass).parse();
     }
+
+
 
     private CsvToBean<E> getCSVBean(Reader reader, Class csvClass) throws CSVBuilderException {
 

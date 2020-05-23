@@ -13,10 +13,10 @@ public class IplMostRunsCSV {
     public int inning;
 
     @CsvBindByName(column = "Avg", required = true)
-    public float Battingaverage;
+    public double average;
 
     @CsvBindByName(column = "SR", required = true)
-    public float strikeRate;
+    public double strikeRate;
 
     @CsvBindByName(column = "6s", required = true)
     public int noOfSix;
@@ -30,13 +30,16 @@ public class IplMostRunsCSV {
     @CsvBindByName(column = "Runs", required = true)
     public int runs;
 
+    public IplMostRunsCSV(String player, double battingAverage, double battingStrikeRate, int sixes, int fours, int battingRuns) {
+    }
+
     @Override
     public String toString() {
         return "IplMostRunsCSV{" +
                 "player='" + player + '\'' +
                 ", match='" + match + '\'' +
                 ", inning='" + inning + '\'' +
-                ", average='" + Battingaverage + '\'' +
+                ", average='" + average + '\'' +
                 ", strikeRate='" + strikeRate + '\'' +
                 ", noOfSix='" + noOfSix + '\'' +
                 ", noOfFour='" + noOfFour + '\'' +

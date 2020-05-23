@@ -30,16 +30,19 @@ public class IplMostWktsCSV {
     public int inning;
 
     @CsvBindByName(column = "Avg", required = true)
-    public float bollingaverage;
+    public double average;
 
     @CsvBindByName(column = "Runs", required = true)
     public int runs;
 
     @CsvBindByName(column = "SR", required = true)
-    public float strikeRate;
+    public double strikeRate;
 
     @CsvBindByName(column = "Econ", required = true)
-    public float economicsRate;
+    public double economicsRate;
+
+    public IplMostWktsCSV(String player, double average, double strikeRate, double economy, int fiveWickets, int fourWickets, int wickets, int bowlingRuns) {
+    }
 
 
     @Override
@@ -48,7 +51,7 @@ public class IplMostWktsCSV {
                 "player='" + player + '\'' +
                 ", match=" + match +
                 ", inning=" + inning +
-                ", average=" + bollingaverage +
+                ", average=" + average +
                 ", Runs=" + runs +
                 ", strikeRate=" + strikeRate +
                 ", economicsRate=" + economicsRate +
