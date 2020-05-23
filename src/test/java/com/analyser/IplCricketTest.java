@@ -262,6 +262,18 @@ public class IplCricketTest {
     }
 
     @Test
+    public void givenIPLRunsandWktsFile_whenSortedOnRunsandWickets_shouldReturnBestAllRounderPlayer() {
+        try {
+            IplCricketAnalyser iplAnalyser=new IplCricketAnalyser(IplGivenEntity.BATTING);
+            iplAnalyser.loadIplData(IPL_MOST_RUN_CSV_FILE_PATH,IPL_MOST_Wkts_CSV_FILE_PATH);
+            String sortedData=iplAnalyser.Sorting(SortedByField.Parameter.IPL_BEST_ALLROUNDER);
+            IplRecordDAO[] sortedAverageData=new Gson().fromJson(sortedData, IplRecordDAO[].class);
+            Assert.assertEquals("David Warner",sortedAverageData[sortedAverageData.length-1].player);
+        }catch (IplAnalyserException e) {
+        }
+    }
+
+    @Test
     public void givenIPLMostWktsCSVFile_and_IPLMostRunsCSVFile_WhenSortedOn_RunsandWickets_ShouldReturn_LeastAllRounderPlayer() {
         try {
             iplAnalyser.loadIplMostWicketData(IPL_MOST_Wkts_CSV_FILE_PATH);
