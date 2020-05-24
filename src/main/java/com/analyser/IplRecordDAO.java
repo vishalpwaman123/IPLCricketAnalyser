@@ -35,10 +35,4 @@ public class IplRecordDAO {
         this.wickets=iplWktsSheetCSV.Wickets;
         this.bowlingRuns=iplWktsSheetCSV.runs;
     }
-
-    public Object getCensusDTO(IplGivenEntity iplEntity) {
-        if (iplEntity.equals(IplGivenEntity.BATTING))
-            return new IplMostRunsCSV(player,battingAverage,battingStrikeRate,sixes,fours,battingRuns);
-        return new IplMostWktsCSV(player,bowlingAverage,bowlingStrikeRate,economy,fiveWickets,fourWickets,wickets,bowlingRuns);
-    }
 }

@@ -29,8 +29,8 @@ public class IplCricketAnalyser {
             throw new IplAnalyserException("no runs data",IplAnalyserException.ExceptionType.NO_IPL_DATA);        }
         iplComparator = SortedByField.getParameter(parameter);
         ArrayList sortedData= iplDataMap.values()
-                .stream().
-                        sorted(iplComparator)
+                .stream()
+                .sorted(iplComparator)
                 .collect(Collectors.toCollection(ArrayList::new));
         String sortedDataInJson=new Gson().toJson(sortedData);
         return sortedDataInJson;

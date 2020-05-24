@@ -3,7 +3,7 @@ package com.analyser;
 import com.google.gson.Gson;
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
+
 
 public class IplCricketTest {
     private static final String IPL_MOST_RUN_CSV_FILE_PATH = "./src/test/resources/IPLFactsheetMostRuns.csv";
@@ -18,9 +18,7 @@ public class IplCricketTest {
     public void givenIplMostRun_whenSortedOnBatingAverage_shouldReturnShortedResult() throws IplAnalyserException {
         IplCricketAnalyser iplAnalyser = new IplCricketAnalyser(IplGivenEntity.BATTING);
         int numberOfRecord = iplAnalyser.loadIplData(IPL_MOST_RUN_CSV_FILE_PATH);
-
         Assert.assertEquals(100, numberOfRecord);
-
     }
 
 

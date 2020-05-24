@@ -9,6 +9,4 @@ public class IplAdapterFactory {
             return new BatsmanModeAdapter().loadIPLData(iplEntity, csvFilePath);
         return new BollerModeAdapter().loadIPLData(iplEntity, csvFilePath);
     }
-
-
 }

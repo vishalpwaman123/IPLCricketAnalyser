@@ -1,8 +1,6 @@
 package com.analyser;
 import com.opencsv.bean.CsvBindByName;
 public class IplMostRunsCSV {
-   // PLAYER,Mat,Inns,NO,Runs,HS,Avg,BF,SR,100,50,4s,6s
-
     @CsvBindByName(column = "PLAYER", required = true)
     public String player;
 

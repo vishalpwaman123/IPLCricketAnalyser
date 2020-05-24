@@ -1,15 +1,8 @@
 package com.analyser;
 
 import com.opencsv.bean.CsvBindByName;
-//POS,PLAYER,Mat,Inns,Ov,Runs,Wkts,BBI,Avg,Econ,SR,4w,5w,
 
 public class IplMostWktsCSV {
-
-    @CsvBindByName(column = "BBI", required = true)
-    public int bestBowlingIn;
-
-    @CsvBindByName(column = "Ov", required = true)
-    public int over;
 
     @CsvBindByName(column = "4w", required = true)
     public int Fourwicket;
